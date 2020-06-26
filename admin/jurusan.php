@@ -8,7 +8,7 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-        <title>Tabel Mahasiswa</title>
+        <title>Tabel Jurusan</title>
     </head>
     <body>
         <!-- Navbar -->
@@ -25,11 +25,11 @@
                     </li>
                     <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Data
+                        DATA
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item font-weight-bolder" href="mhs.php">Mahasiswa</a>
-                            <a class="dropdown-item" href="jurusan.php">Jurusan</a>
+                            <a class="dropdown-item" href="mhs.php">Mahasiswa</a>
+                            <a class="dropdown-item font-weight-bolder" href="jurusan.php">Jurusan</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -48,16 +48,15 @@
         <div class="container bg-light rounded-lg warna" style="margin-top: 100px">
             <div class="row justify-content-center">
                 <div class="col-11 mt-4">
-                    <h2 class="mb-4" style="margin-left: -30px">Tabel Mahasiswa</h2>
+                    <h2 class="mb-4" style="margin-left: -30px">Tabel Jurusan</h2>
                     <!-- TABEL -->
                     <table class="table table-hover table-striped">
                         <thead class="bg-primary text-center">
                             <tr>
-                                <th scope="col" style="width: 170px">NPM</th>
-                                <th scope="col">Nama Mahasiswa</th>
-                                <th scope="col">Jurusan</th>
+                                <th scope="col" style="width: 170px">Kode Jurusan</th>
+                                <th scope="col">Nama Jurusan</th>
                                 <th scope="col">Kelas</th>
-                                <th scope="col" style="width: 145px">Tgl Pendaftaran</th>
+                                <th scope="col">Biaya SPP</th>
                                 <th scope="col"  style="width: 200px">Action</th>
                             </tr>
                         </thead>
@@ -67,11 +66,9 @@
                                 <td>Mark</td>
                                 <td>Otto</td>
                                 <td>@mdo</td>
-                                <td>@mdo</td>
                                 <td><div align="center">
                                     <a data-toggle="modal" href="#modalUpdate"><button type="button" class="btn btn-info btn-sm font-weight-bolder">Update</button></a>
                                     <a href=""><button type="button" class="btn btn-warning btn-sm font-weight-bolder">Delete</button></a>
-                                    <a href=""><button type="button" class="btn btn-secondary btn-sm font-weight-bolder">Verify</button></a>
                                 </td>
                             </tr>
                             <tr>
@@ -79,11 +76,9 @@
                                 <td>Jacob</td>
                                 <td>Thornton</td>
                                 <td>@fat</td>
-                                <td>@mdo</td>
                                 <td><div align="center">
                                     <a  data-toggle="modal" href="#modalUpdate"><button type="button" class="btn btn-info btn-sm font-weight-bolder">Update</button></a>
                                     <a href=""><button type="button" class="btn btn-warning btn-sm font-weight-bolder">Delete</button></a>
-                                    <a href=""><button type="button" class="btn btn-secondary btn-sm font-weight-bolder">Verify</button></a>
                                 </td>
                             </tr>
                             <tr>
@@ -91,11 +86,9 @@
                                 <td>Jacob</td>
                                 <td>Thornton</td>
                                 <td>@fat</td>
-                                <td>@mdo</td>
                                 <td><div align="center">
                                     <a data-toggle="modal" href="#modalUpdate"><button type="button" class="btn btn-info btn-sm font-weight-bolder">Update</button></a>
                                     <a href=""><button type="button" class="btn btn-warning btn-sm font-weight-bolder">Delete</button></a>
-                                    <a href=""><button type="button" class="btn btn-secondary btn-sm font-weight-bolder">Verify</button></a>
                                 </td>
                             </tr>
                             <tr>
@@ -103,11 +96,9 @@
                                 <td>Jacob</td>
                                 <td>Thornton</td>
                                 <td>@fat</td>
-                                <td>@mdo</td>
                                 <td><div align="center">
                                     <a data-toggle="modal" href="#modalUpdate"><button type="button" class="btn btn-info btn-sm font-weight-bolder">Update</button></a>
                                     <a href=""><button type="button" class="btn btn-warning btn-sm font-weight-bolder">Delete</button></a>
-                                    <a href=""><button type="button" class="btn btn-secondary btn-sm font-weight-bolder">Verify</button></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -251,6 +242,6 @@
         }
         .tombol{border-color: #2d98da;color: #2d98da;}.tombol:hover{background-color: #2d98da !important;border-color: #2d98da;}.tombol:focus{box-shadow:0 0 0 .2rem #2d98da; border-color: #2d98da;}
         .warna{border: solid; border-width: 0px;border-top-width: 5px; border-color: #045890}
-        .btn-sm{font-size:.630rem;
+        .btn-sm{font-size:.630rem;}
     </style>
 </html>
