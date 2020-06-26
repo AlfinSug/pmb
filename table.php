@@ -84,6 +84,7 @@ $biodata = $db->tampil_data();
         <p class="card-text"><i class="far fa-calendar-alt"></i> <?php echo $row['ttl_mhs']; ?></p>
         <p class="card-text"><i class="fas fa-tty"></i> <?php echo $row['telp_mhs']; ?></p>
         <p class="card-text"><i class="far fa-envelope"></i> <?php echo $row['email']; ?></p>
+        <p class="card-text"><i class="fas fa-university"></i> <?php echo $row['nama_jurusan']; ?></p>
         <p class="card-text"><i class="far fa-clock"></i> <?php echo $row['kelas']; ?></p>
         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
         <?php 
