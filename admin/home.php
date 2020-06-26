@@ -47,7 +47,7 @@ else{
                         </li>
                     </ul>
                     <div class="my-2 my-lg-0">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="logout.php">
                         <button class="btn btn-outline-success my-2 my-sm-0 tombol" type="button" style="font-family: 'Roboto', sans-serif;">Logout</button></a>
                     </div>
                 </div>
@@ -66,85 +66,47 @@ else{
                     <div class="col-11 mt-4">
                         <h2 class="mb-4" style="margin-left: -30px">Dashboard</h2>
                         <!-- TABEL -->
-                        <table class="table table-hover table-striped"  style="width: 1100px; margin-left: -42px">
+                        <table class="table table-bordered table-hover table-striped"  style="width: 1100px; margin-left: -42px">
                             <thead class="bg-primary text-center">
                                 <tr>
-                                    <th scope="col" style="width: 130px">NPM</th>
-                                    <th scope="col">Nama Mahasiswa</th>
-                                    <th scope="col" style="width: 10px">Gender</th>
-                                    <th scope="col">Jurusan</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col" style="width: 100px">Kelahiran</th>
-                                    <th scope="col" style="width: 170px">Alamat</th>
-                                    <th scope="col" style="width: 100px">Pendaftaran</th>
+                                    <th scope="col" style="width: 100px">NPM</th>
+                                    <th scope="col" style="width: 120px">Nama</th>
+                                    <th scope="col" style="width: 20px">Gender</th>
+                                    <th scope="col" style="width: 140px">Jurusan</th>
+                                    <th scope="col" style="width: 140px">Email</th>
+                                    <th scope="col" style="width: 60px">Kelahiran</th>
+                                    <th scope="col" style="width: 140px">Alamat</th>
+                                    <th scope="col" style="width: 40px">Pendaftaran</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr style="font-size: 16px">
                                     <th scope="row">1</th>
                                     <td>Mark</td>
                                     <td>Otto</td>
                                     <td>@mdo</td>
                                     <td>@mdo</td>
-                                    <td><div align="center">
-                                        <a data-toggle="modal" href="#modalUpdate"><button type="button" class="btn btn-info btn-sm font-weight-bolder">Update</button></a>
-                                        <a href=""><button type="button" class="btn btn-warning btn-sm font-weight-bolder">Delete</button></a>
-                                        <a href=""><button type="button" class="btn btn-secondary btn-sm font-weight-bolder">Verify</button></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
                                     <td>@mdo</td>
-                                    <td><div align="center">
-                                        <a  data-toggle="modal" href="#modalUpdate"><button type="button" class="btn btn-info btn-sm font-weight-bolder">Update</button></a>
-                                        <a href=""><button type="button" class="btn btn-warning btn-sm font-weight-bolder">Delete</button></a>
-                                        <a href=""><button type="button" class="btn btn-secondary btn-sm font-weight-bolder">Verify</button></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
                                     <td>@mdo</td>
-                                    <td><div align="center">
-                                        <a data-toggle="modal" href="#modalUpdate"><button type="button" class="btn btn-info btn-sm font-weight-bolder">Update</button></a>
-                                        <a href=""><button type="button" class="btn btn-warning btn-sm font-weight-bolder">Delete</button></a>
-                                        <a href=""><button type="button" class="btn btn-secondary btn-sm font-weight-bolder">Verify</button></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>@mdo</td>
-                                    <td><div align="center">
-                                        <a data-toggle="modal" href="#modalUpdate"><button type="button" class="btn btn-info btn-sm font-weight-bolder">Update</button></a>
-                                        <a href=""><button type="button" class="btn btn-warning btn-sm font-weight-bolder">Delete</button></a>
-                                        <a href=""><button type="button" class="btn btn-secondary btn-sm font-weight-bolder">Verify</button></a>
-                                    </td>
+                                    <td>@mdo</td>                                    
                                 </tr>
                             </tbody>
                         </table>
                         <!-- /TABEL -->
                     </div>
                 </div>
+                <br>
             </div>
         <!-- /Konten -->
 
+        <br>
+        <br>
+        <br>
             <!-- Optional JavaScript -->
             <!-- jQuery first, then Popper.js, then Bootstrap JS -->
             <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-        <br>
-        <br>
-        <br>
-        <br>
     </body>
     <!-- CSS -->
     <style>
