@@ -63,18 +63,26 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php
+                                require_once "models/modelMhs.php";
+                                $object = new modelMhs();
+                                $object->viMhs();
+                                $mhs=$object->viMhs();
+                                foreach($mhs as $see){
+                            ?>
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
+                                <th scope="row"><?php echo $see['npm'];?></th>
+                                <td><?php echo $see['nama_mhs'];?></td>
+                                <td><?php echo $see['nama_jurusan'];?></td>
+                                <td><?php echo $see['kelas'];?></td>
+                                <td><?php echo $see['tgl_pendaftaran'];?></td>
                                 <td><div align="center">
                                     <a data-toggle="modal" href="#modalUpdate"><button type="button" class="btn btn-warning btn-sm font-weight-bolder">Update</button></a>
                                     <a href=""><button type="button" class="btn btn-danger btn-sm font-weight-bolder">Delete</button></a>
                                     <a href=""><button type="button" class="btn btn-info btn-sm font-weight-bolder">Verify</button></a>
                                 </td>
                             </tr>
+                            <?php }?>
                         </tbody>
                     </table>
                     <!-- MODAL UPDATE-->

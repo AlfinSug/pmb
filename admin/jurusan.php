@@ -75,10 +75,66 @@
                                 <td><?php echo $see['kelas'];?></td>
                                 <td><?php echo $see['biaya_spp'];?></td>
                                 <td><div align="center">
-                                    <a data-toggle="modal" href="#modalUpdate"><button type="button" class="btn btn-info btn-sm font-weight-bolder">Update</button></a>
+                                    <a data-toggle="modal" href="#modalUpdate<?php echo $see['id_jurusan'];?>"><button type="button" class="btn btn-info btn-sm font-weight-bolder">Update</button></a>
                                     <a href="proses/prosesJurusan.php?aksi=remove&kd=<?php echo $see['id_jurusan'];?>"><button type="button" class="btn btn-warning btn-sm font-weight-bolder">Delete</button></a>
                                 </td>
                             </tr>
+                                <!-- MODAL UPDATE-->
+                                    <div class="modal fade" id="modalUpdate<?php echo $see['id_jurusan'];?>" tabindex="-1" role="dialog" aria-labelledby="modalJurusanLabel" aria-hidden="">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalJurusanLabel">Update Data Jurusan</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="proses/prosesJurusan.php?aksi=change&kd=<?php echo $see['id_jurusan'];?>" method="POST">
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-3">
+                                                                <label for="recipient-name" class="col-form-label  ml-4">Kode Jurusan</label>
+                                                            </div>
+                                                            <div class="col-sm-8 ml-1">
+                                                                <input type="text" class="form-control" id="kode_jurusan" value="<?php echo $see['id_jurusan'];?>" placeholder="Kode Jurusan" disabled>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-3">
+                                                                <label for="recipient-name" class="col-form-label  ml-4">Nama Jurusan</label>
+                                                            </div>
+                                                            <div class="col-sm-8 ml-1">
+                                                                <input type="text" class="form-control" id="nama_jurusan" name="nama_jurusan" value="<?php echo $see['nama_jurusan'];?>" placeholder="Nama Jurusan">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-3">
+                                                                <label for="recipient-name" class="col-form-label  ml-4">Kelas</label>
+                                                            </div>
+                                                            <div class="col-sm-8 ml-1">
+                                                            <select class="form-control" disabled>
+                                                                <option value=""><?php echo $see['kelas'];?></option>
+                                                            </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-3">
+                                                                <label for="recipient-name" class="col-form-label  ml-4">Biaya SPP</label>
+                                                            </div>
+                                                            <div class="col-sm-8 ml-1">
+                                                                <input type="text" class="form-control" id="spp" name="spp" value="<?php echo $see['biaya_spp'];?>" placeholder="Biaya SPP">
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <!-- /MODAL UPDATE -->
                             <?php } ?>
                         </tbody>
                     </table>
@@ -149,62 +205,6 @@
                 </div>
             </div>
         <!-- /MODAL -->
-        <!-- MODAL UPDATE-->
-            <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalJurusanLabel" aria-hidden="">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalJurusanLabel">Update Data Jurusan</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="proses/prosesJurusan.php?aksi=change&kd=<?php echo $see['id_jurusan'];?>" method="POST">
-                                <div class="form-group row">
-                                    <div class="col-sm-3">
-                                        <label for="recipient-name" class="col-form-label  ml-4">Kode Jurusan</label>
-                                    </div>
-                                    <div class="col-sm-8 ml-1">
-                                        <input type="text" class="form-control" id="kode_jurusan" value="<?php echo $see['id_jurusan'];?>" placeholder="Kode Jurusan" disabled>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-3">
-                                        <label for="recipient-name" class="col-form-label  ml-4">Nama Jurusan</label>
-                                    </div>
-                                    <div class="col-sm-8 ml-1">
-                                        <input type="text" class="form-control" id="nama_jurusan" name="nama_jurusan" value="<?php echo $see['nama_jurusan'];?>" placeholder="Nama Jurusan">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-3">
-                                        <label for="recipient-name" class="col-form-label  ml-4">Kelas</label>
-                                    </div>
-                                    <div class="col-sm-8 ml-1">
-                                    <select class="form-control" disabled>
-                                        <option value=""><?php echo $see['kelas'];?></option>
-                                    </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-3">
-                                        <label for="recipient-name" class="col-form-label  ml-4">Biaya SPP</label>
-                                    </div>
-                                    <div class="col-sm-8 ml-1">
-                                        <input type="text" class="form-control" id="spp" name="spp" value="<?php echo $see['biaya_spp'];?>" placeholder="Biaya SPP">
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <!-- /MODAL UPDATE -->
         <!-- /Konten -->
             <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -215,7 +215,8 @@
     <!-- CSS -->
     <style>
         .tombol{border-color: #2d98da;color: #2d98da;}.tombol:hover{background-color: #2d98da !important;border-color: #2d98da;}.tombol:focus{box-shadow:0 0 0 .2rem #2d98da; border-color: #2d98da;}
-        .warna{border: solid; border-width: 0px;border-top-width: 5px; border-color: #045890;-webkit-backdrop-filter: blur(30px);backdrop-filter: blur(30px);box-shadow: 0 6px 90px 0 rgba(0, 0, 0, 0.16);}
+        .warna{border: solid; border-width: 0px;border-top-width: 5px; border-color: #045890;-webkit-backdrop-filter: blur(30px); box-shadow: 0 6px 90px 0 rgba(0, 0, 0, 0.16);
+        }
         .btn-sm{font-size:.630rem;}
     </style>
 </html>
