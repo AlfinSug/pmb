@@ -46,108 +46,182 @@
         <!-- /Navbar -->
         
         <!-- Konten -->
-        <div class="container bg-light warna" style="margin-top: 100px; border-radius: 10px;">
-            <div class="row justify-content-center">
-                <div class="col-11 mt-4">
-                    <h2 class="mb-4" style="margin-left: -30px; color: #2d98da">Tabel Mahasiswa</h2>
-                    <!-- TABEL -->
-                    <table class="table table-hover table-striped">
-                        <thead class="bg-primary text-center text-light">
-                            <tr>
-                                <th scope="col" style="width: 170px">NPM</th>
-                                <th scope="col">Nama Mahasiswa</th>
-                                <th scope="col">Jurusan</th>
-                                <th scope="col">Kelas</th>
-                                <th scope="col" style="width: 145px">Tgl Pendaftaran</th>
-                                <th scope="col"  style="width: 200px">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                                require_once "models/modelMhs.php";
-                                $object = new modelMhs();
-                                $object->viMhs();
-                                $mhs=$object->viMhs();
-                                foreach($mhs as $see){
-                            ?>
-                            <tr>
-                                <th scope="row"><?php echo $see['npm'];?></th>
-                                <td><?php echo $see['nama_mhs'];?></td>
-                                <td><?php echo $see['nama_jurusan'];?></td>
-                                <td><?php echo $see['kelas'];?></td>
-                                <td><?php echo $see['tgl_pendaftaran'];?></td>
-                                <td><div align="center">
-                                    <a data-toggle="modal" href="#modalUpdate"><button type="button" class="btn btn-warning btn-sm font-weight-bolder">Update</button></a>
-                                    <a href=""><button type="button" class="btn btn-danger btn-sm font-weight-bolder">Delete</button></a>
-                                    <a href=""><button type="button" class="btn btn-info btn-sm font-weight-bolder">Verify</button></a>
-                                </td>
-                            </tr>
-                            <?php }?>
-                        </tbody>
-                    </table>
-                    <!-- MODAL UPDATE-->
-                    <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalJurusanLabel" aria-hidden="">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modalJurusanLabel">Update Data Jurusan</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="form-group row">
-                                            <div class="col-sm-3">
-                                                <label for="recipient-name" class="col-form-label  ml-4">Kode Jurusan</label>
-                                            </div>
-                                            <div class="col-sm-8 ml-1">
-                                                <input type="text" class="form-control" id="kode_jurusan" placeholder="Kode Jurusan" disabled>
+        <div align="center">
+            <div class="bg-light warna" style="margin-top: 100px; border-radius: 10px; width: 97%">
+                <div class="row justify-content-center">
+                    <div class="col-11 mt-4">
+                        <h2 class="mb-4 text-left" style="margin-left: -3%; color: #2d98da">Tabel Mahasiswa</h2>
+                        <!-- TABEL -->
+                        <table class="table table-hover table-striped" style="width: 106%; margin-left: -3%">
+                            <thead class="bg-primary text-center text-light">
+                                <tr>
+                                    <th scope="col" style="width: 5%">NPM</th>
+                                    <th scope="col" style="width: 10%">Nama Mahasiswa</th>
+                                    <th scope="col" style="width: 10%">Jurusan</th>
+                                    <th scope="col" style="width: 5%">Kelas</th>
+                                    <th scope="col" style="width: 5%">Alamat</th>
+                                    <th scope="col" style="width: 20%">TTL</th>
+                                    <th scope="col" style="width: 10%">No. Telp</th>
+                                    <th scope="col" style="width: 2%">Gender</th>
+                                    <th scope="col" style="width: 15%">Email</th>
+                                    <th scope="col" style="width: 5%">Tgl Pendaftaran</th>
+                                    <th scope="col" style="width: 5%">Pembayaran</th>
+                                    <th scope="col" style="width: 20%">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-size: 15px">
+                                <?php
+                                    require_once "models/modelMhs.php";
+                                    $object = new modelMhs();
+                                    $object->viMhs();
+                                    $mhs=$object->viMhs();
+                                    foreach($mhs as $see){
+                                ?>
+                                <tr>
+                                    <th scope="row"><?php echo $see['id_jurusan'].'.2018.0000'.$see['npm'];?></th>
+                                    <td><?php echo $see['nama_mhs'];?></td>
+                                    <td><?php echo $see['nama_jurusan'];?></td>
+                                    <td><?php echo $see['kelas'];?></td>
+                                    <td><?php echo $see['alamat_mhs'];?></td>
+                                    <td><?php echo $see['ttl_mhs'];?></td>
+                                    <td><?php echo $see['telp_mhs'];?></td>
+                                    <td><?php echo $see['gender_mhs'];?></td>
+                                    <td><?php echo $see['email'];?></td>
+                                    <td><?php echo $see['tgl_pendaftaran'];?></td>
+                                    <td><?php
+                                    $bayar=$see['bukti_pem'];
+                                    if($bayar=="NULL"){
+                                        echo "Belum Bayar";
+                                    } else{ echo "Sudah Bayar";}
+                                    ?></td>
+                                    <td><div align="center">
+                                        <a data-toggle="modal" href="#modalUpdate<?php echo $see['npm'];?>"><button type="button" class="btn btn-warning btn-sm font-weight-bolder">Update</button></a><br>
+                                        <a href="proses/prosesMhs.php?aksi=delete&npm=<?php echo $see['npm'];?>"><button type="button" class="text-light btn btn-danger btn-sm font-weight-bolder">Delete</button></a><br>
+                                        <?php
+                                        $verif=$see['verifikasi'];
+                                        if($verif=="NULL"){?>
+                                            <a href="proses/prosesMhs.php?aksi=tombol&npm=<?php echo $see['npm'];?>"><button type="button" class="btn btn-info btn-sm font-weight-bolder">Verify</button></a>
+                                        <?php } else if($verif=="DONE"){ ?>
+                                            <button type="button" class="btn btn-success btn-sm font-weight-bolder">Verified</button>
+                                        <?php }
+                                        ?>
+                                    </td>
+                                </tr>
+                                <!-- MODAL UPDATE-->
+                                    <div class="modal fade" id="modalUpdate<?php echo $see['npm'];?>" tabindex="-1" role="dialog" aria-labelledby="modalJurusanLabel" aria-hidden="">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalJurusanLabel">Update Data Jurusan</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="proses/prosesMhs.php?aksi=ubah&id=<?php echo $see['npm'];?>" method="POST">
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-3">
+                                                                <label for="recipient-name" class="col-form-label ml-4">NPM</label>
+                                                            </div>
+                                                            <div class="col-sm-8 ml-1">
+                                                                <input type="text" class="form-control" id="npm" name="npm" value="<?php echo $see['id_jurusan'].'.2018.0000'.$see['npm'];?>" placeholder="NPM" disabled>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-3">
+                                                                <label for="recipient-name" class="col-form-label ml-4">Nama Mahasiswa</label>
+                                                            </div>
+                                                            <div class="col-sm-8 ml-1">
+                                                                <input type="text" class="form-control" id="nmmhs" name="nmmhs" placeholder="Nama Mahasiswa" value="<?php echo $see['nama_mhs'];?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-3">
+                                                                <label for="recipient-name" class="col-form-label ml-4">Jurusan</label>
+                                                            </div>
+                                                            <div class="col-sm-8 ml-1">
+                                                            <select class="form-control" id="jrsn" name="jrsn">
+                                                                <option value="<?php echo $see['id_jurusan'];?>"><?php echo $see['nama_jurusan']." ".$see['kelas'];?></option>
+                                                                <option value="1">Teknik Mesin Pagi</option>
+                                                                <option value="2">Teknik Mesin Malam</option>
+                                                            </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-3">
+                                                                <label for="recipient-name" class="col-form-label ml-4">Alamat</label>
+                                                            </div>
+                                                            <div class="col-sm-8 ml-1">
+                                                                <textarea type="text" class="form-control" id="almt" name="almt" placeholder="Alamat"><?php echo $see['alamat_mhs'];?></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-3">
+                                                                <label for="recipient-name" class="col-form-label  ml-4">TTL</label>
+                                                            </div>
+                                                            <div class="col-sm-8 ml-1">
+                                                                <input type="text" class="form-control" id="ttl" name="ttl" value="<?php echo $see['ttl_mhs'];?>" placeholder="YYYY-MM-DD">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-3">
+                                                                <label for="recipient-name" class="col-form-label ml-4">No. Telp</label>
+                                                            </div>
+                                                            <div class="col-sm-8 ml-1">
+                                                                <input type="text" class="form-control" id="notelp" name="notelp" placeholder="No. Telp" value="<?php echo $see['telp_mhs'];?>">
+                                                            </div>
+                                                        </div><div class="form-group row">
+                                                            <div class="col-sm-3">
+                                                                <label for="recipient-name" class="col-form-label  ml-4">Gender</label>
+                                                            </div>
+                                                            <div class="col-sm-8 ml-1">
+                                                            <?php
+                                                                if($see['gender_mhs']=='L'){
+                                                                    $jk="Laki-laki";
+                                                                }else {$jk="Perempuan";}
+                                                            ?>
+                                                                <select class="form-control" id="jk" name="jk">
+                                                                    <option value="<?php echo $see['gender_mhs']?>" class="font-weight-bolder"><?php echo $jk?></option>
+                                                                    <option value="L">Laki-laki</option>
+                                                                    <option value="P">Perempuan</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-3">
+                                                                <label for="recipient-name" class="col-form-label  ml-4">Email</label>
+                                                            </div>
+                                                            <div class="col-sm-8 ml-1">
+                                                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="<?php echo $see['email'];?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-3">
+                                                                <label for="recipient-name" class="col-form-label  ml-4">Tanggal Pendaftaran</label>
+                                                            </div>
+                                                            <div class="col-sm-8 ml-1">
+                                                                <input type="text" class="form-control" placeholder="Tanggal Pendaftaran" value="<?php echo $see['tgl_pendaftaran'];?>" disabled>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Send message</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-3">
-                                                <label for="recipient-name" class="col-form-label  ml-4">Nama Jurusan</label>
-                                            </div>
-                                            <div class="col-sm-8 ml-1">
-                                                <input type="text" class="form-control" id="nama_jurusan" placeholder="Nama Jurusan">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-3">
-                                                <label for="recipient-name" class="col-form-label  ml-4">Kelas</label>
-                                            </div>
-                                            <div class="col-sm-8 ml-1">
-                                            <select class="form-control">
-                                                <option value="">-- Kelas --</option>
-                                                <option value="K1">Pagi</option>
-                                                <option value="K2">Malam</option>
-                                            </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-3">
-                                                <label for="recipient-name" class="col-form-label  ml-4">Biaya SPP</label>
-                                            </div>
-                                            <div class="col-sm-8 ml-1">
-                                                <input type="text" class="form-control" id="spp" placeholder="Biaya SPP">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Send message</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                                    </div>
+                                <!-- /MODAL UPDATE -->
+                                <?php }?>
+                            </tbody>
+                        </table>
+                        <!-- /TABEL -->
                     </div>
-                    <!-- /MODAL UPDATE -->
-                    <!-- /TABEL -->
                 </div>
+                <br>
+                <br>
             </div>
-            <br>
-            <br>
         </div>
         <!-- /Konten -->
             <!-- Optional JavaScript -->
@@ -163,7 +237,7 @@
     <!-- CSS -->
     <style>
         .tombol{border-color: #2d98da;color: #2d98da;}.tombol:hover{background-color: #2d98da !important;border-color: #2d98da;}.tombol:focus{box-shadow:0 0 0 .2rem #2d98da; border-color: #2d98da;}
-        .warna{border: solid; border-width: 0px;border-top-width: 5px; border-color: #045890;-webkit-backdrop-filter: blur(30px);backdrop-filter: blur(30px);box-shadow: 0 6px 90px 0 rgba(0, 0, 0, 0.16);}
+        .warna{border: solid; border-width: 0px;border-top-width: 5px; border-color: #045890;-webkit-backdrop-filter: blur(30px);box-shadow: 0 6px 90px 0 rgba(0, 0, 0, 0.16);}
         .btn-sm{font-size:.630rem;}
     </style>
 </html>
