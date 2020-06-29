@@ -1,3 +1,21 @@
+<?php
+session_start();
+$aksi=$_GET['aksi'];
+if($aksi=="admin"){
+    $username = $_POST['unameadm'];
+    $password = $_POST['passadm']; 
+    // validasi login
+    if($username == 'admin' AND $password == 'admin'){ 
+        $_SESSION['unameadm'] = $username;
+        header('Location: admin/home.php');
+    }
+    else{
+        $pesan = "Username atau Password yang anda masukkan salah";
+        echo "<script type='text/javascript'>alert('$pesan');</script>";
+    }
+}
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -15,11 +33,12 @@
     
   </head>
   <body>
-  <img src="assets/kiri3.png" alt="" style="position: fixed;bottom: 0;	left: 0;	height: 100%;	z-index: -1;">
+    <img src="assets/kiri3.png" alt="" style="position: fixed;bottom: 0;	left: 0;	height: 100%;	z-index: -1;">
     <div class="container">
+      <!-- ROW LOGIN -->
       <div class="row" style="margin-top: 40px">
         <div class="col">
-          <img src="assets/mid.svg" alt="" class="w-100" style="margin-top: 80px; margin-Left: 180px;">
+          <img src="assets/mid.svg" alt="" class="w-100" style="margin-top: 50px; margin-left: -10%;">
         </div>
         <div class="col mt-4" style="margin-left: 200px; ">
           <div class="d-flex justify-content-center">
@@ -35,12 +54,13 @@
             </ul>
           </div>
           <div class="tab-content">
+            <!-- MHS -->
             <div class="tab-pane fade show active" id="step-1" area-labelledby="step1-tab" role="tab-panel">
               <div class="innerContent">
                 <div class="login-content justify-content-center">
                   <form action="#">
                     <img src="assets/mhs.svg">
-                    <h2>WELCOME</h2>
+                    <h4 style="margin-top: 12%;"></h4>
                     <div class="input-div one">
                       <div class="i">
                           <i class="fas fa-user"></i>
@@ -64,19 +84,22 @@
                 </div>
               </div>
             </div>
+            <!-- /MHS -->
+
+            <!-- ADM -->
             <div class="tab-pane fade" id="step-2" area-labelledby="step2-tab" role="tab-panel">
               <div class="innerContent">
                 <div class="login-content justify-content-center">
-                  <form action="#">
+                  <form action="index.php?aksi=admin" method="POST">
                     <img src="assets/adm.svg">
-                    <h2>WELCOME</h2>
+                    <h4 style="margin-top: 12%;"></h4>
                     <div class="input-div one">
                       <div class="i">
                           <i class="fas fa-user"></i>
                       </div>
                       <div class="div">
                           <h5>Username</h5>
-                          <input type="text" class="input">
+                          <input type="text" class="input" id="unameadm" name="unameadm">
                       </div>
                     </div>
                     <div class="input-div pass">
@@ -85,7 +108,7 @@
                       </div>
                       <div class="div">
                           <h5>Password</h5>
-                          <input type="password" class="input">
+                          <input type="password" class="input" id="passadm" name="passadm">
                       </div>
                     </div>
                     <input type="submit" class="btn2" value="Login">
@@ -93,17 +116,25 @@
                 </div>
               </div>
             </div>
+            <!-- /ADM -->
           </div>
         </div>
       </div>
-      <div class="row" style="margin-top: -200px; margin-left:-120px">
+      <!-- /ROW LOGIN -->
+
+      <!-- ROW KATA -->
+      <div class="row" style="margin-top: -15%; margin-left: -11%">
         <div class="col-3">
-          <h4 class="font-weight-bold text-white">Bergabung bersama kami, Institut Teknologi Adhi Tama Surabaya. Penerima Anugerah Kampus Unggulan Jawa Timur!</h4>
+          <h6 style="margin: 20% 30%; width: 110%; height: 30px;" class="font-weight-bold text-white">Bergabung bersama kami, Institut Teknologi Adhi Tama Surabaya. Penerima Anugerah Kampus Unggulan Jawa Timur!</h6>
         </div>
       </div>
-      <div class="row" style="margin-left: 90px">
-        <a href="#"><button type="button" class="btn btn-primary shadow font-text">Daftar Sekarang!</button></a>
+      <!-- /ROW KATA -->
+
+      <!-- ROW DAFTAR -->
+      <div class="row" style="margin: 1% -2%; cursor: pointer;">
+        <a href="registrasi.php"><button type="button" class="btn btn-primary shadow font-text">Daftar Sekarang!</button></a>
       </div>
+      <!-- /ROW DAFTAR -->
     </div>
     <!--  -->
     <!-- Optional JavaScript -->
