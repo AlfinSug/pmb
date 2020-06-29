@@ -23,5 +23,15 @@ class database{
 		return $hasil;
 	}
 
+	function pickID($npm) {
+        $sql_pick = mysqli_query($this->koneksi, "select * from pendaftaran where npm='$npm'");
+        return $sql_pick->fetch_array();
+    }
+
+	function update_data($doc, $kk, $bukti, $npm) {
+        $sql_update = "update pendaftaran set dokumen='$doc', kartu_keluarga='$kk', bukti_pem='$bukti' where npm='$npm'";
+        $exec = mysqli_query($this->koneksi, $sql_update);
+    }
+
 }
 ?>
