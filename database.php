@@ -22,5 +22,6 @@ class database{
 		}
 		return $hasil;
 	}
+
 }
 ?>
