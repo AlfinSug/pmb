@@ -78,7 +78,7 @@
                                     foreach($mhs as $see){
                                 ?>
                                 <tr>
-                                    <th scope="row"><?php echo $see['id_jurusan'].'.2018.0000'.$see['npm'];?></th>
+                                    <th scope="row"><?php echo $see['id_jurusan'].'.2020.0000'.$see['npm'];?></th>
                                     <td><?php echo $see['nama_mhs'];?></td>
                                     <td><?php echo $see['nama_jurusan'];?></td>
                                     <td><?php echo $see['kelas'];?></td>
@@ -96,13 +96,13 @@
                                     ?></td>
                                     <td><div align="center">
                                         <a data-toggle="modal" href="#modalUpdate<?php echo $see['npm'];?>"><button type="button" class="btn btn-warning btn-sm font-weight-bolder">Update</button></a><br>
-                                        <a href="proses/prosesMhs.php?aksi=delete&npm=<?php echo $see['npm'];?>"><button type="button" class="text-light btn btn-danger btn-sm font-weight-bolder">Delete</button></a><br>
+                                        <a href="proses/prosesMhs.php?aksi=delete&npm=<?php echo $see['npm'];?>"><button type="button" class="text-light btn btn-danger btn-sm font-weight-bolder" style="margin-top: 5px">Delete</button></a><br>
                                         <?php
                                         $verif=$see['verifikasi'];
                                         if($verif=="NULL"){?>
-                                            <a href="proses/prosesMhs.php?aksi=tombol&npm=<?php echo $see['npm'];?>"><button type="button" class="btn btn-info btn-sm font-weight-bolder">Verify</button></a>
+                                            <a href="proses/prosesMhs.php?aksi=tombol&npm=<?php echo $see['npm'];?>"><button type="button" class="btn btn-info btn-sm font-weight-bolder" style="margin-top: 5px" >Verify</button></a>
                                         <?php } else if($verif=="DONE"){ ?>
-                                            <button type="button" class="btn btn-success btn-sm font-weight-bolder">Verified</button>
+                                            <button type="button" class="btn btn-success btn-sm font-weight-bolder" style="margin-top: 5px">Verified</button>
                                         <?php }
                                         ?>
                                     </td>
@@ -124,7 +124,7 @@
                                                                 <label for="recipient-name" class="col-form-label ml-4">NPM</label>
                                                             </div>
                                                             <div class="col-sm-8 ml-1">
-                                                                <input type="text" class="form-control" id="npm" name="npm" value="<?php echo $see['id_jurusan'].'.2018.0000'.$see['npm'];?>" placeholder="NPM" disabled>
+                                                                <input type="text" class="form-control" id="npm" name="npm" value="<?php echo $see['id_jurusan'].'.2020.0000'.$see['npm'];?>" placeholder="NPM" disabled>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">

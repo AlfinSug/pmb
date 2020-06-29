@@ -5,7 +5,17 @@ else{
         echo header("location:../index.php");
     }
 ?>
-
+<?php
+$kosong=$_GET['kosong'];
+if($kosong=="alert"){
+    $pesan="Harap Mengisi Form Dengan Teliti";
+    echo "<script type='text/javascript'>alert('$pesan');</script>";
+}
+?>
+<?php
+    $sambunganDB = mysql_connect("localhost","root","");
+    $koneksi=mysql_select_db("pmb");
+?>
 <!doctype html>
 <html lang="en">
     <head>
@@ -65,41 +75,93 @@ else{
                 <div class="row justify-content-center">
                     <div class="col-11 mt-4">
                         <h2 class="mb-4" style="margin-left: -30px">Dashboard</h2>
-                        <!-- TABEL -->
-                        <table class="table table-bordered table-hover table-striped"  style="width: 1100px; margin-left: -42px">
-                            <thead class="bg-primary text-center">
-                                <tr>
-                                    <th scope="col" style="width: 100px">NPM</th>
-                                    <th scope="col" style="width: 120px">Nama</th>
-                                    <th scope="col" style="width: 20px">Gender</th>
-                                    <th scope="col" style="width: 140px">Jurusan</th>
-                                    <th scope="col" style="width: 140px">Email</th>
-                                    <th scope="col" style="width: 60px">Kelahiran</th>
-                                    <th scope="col" style="width: 140px">Alamat</th>
-                                    <th scope="col" style="width: 40px">Pendaftaran</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr style="font-size: 16px">
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>                                    
-                                </tr>
-                            </tbody>
-                        </table>
-                        <!-- /TABEL -->
+                    </div>
+                </div>
+                <div class="row justify-content-center" >
+                    <!-- TABEL -->
+                    <table class="table table-bordered table-hover table-striped"  style="width: 1100px;">
+                        <thead class="bg-primary text-center">
+                            <tr>
+                                <th scope="col" style="width: 100px">NPM</th>
+                                <th scope="col" style="width: 120px">Nama</th>
+                                <th scope="col" style="width: 20px">Gender</th>
+                                <th scope="col" style="width: 140px">Jurusan</th>
+                                <th scope="col" style="width: 140px">Email</th>
+                                <th scope="col" style="width: 40px">Pendaftaran</th>
+                                <th scope="col" style="width: 40px">Pembayaran</th>
+                                <th scope="col" style="width: 40px">Verifikasi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                $tgl = $_GET['tgl'];
+                                $ts= date('Y/m/d',strtotime($tgl));
+                                $pem = $_GET['pem'];
+                                $ver = $_GET['ver'];
+                                if($tgl==""&&$pem==""&&$ver==""){
+                                    $query = "SELECT*FROM pendaftaran, jurusan WHERE jurusan.id_jurusan=pendaftaran.id_jurusan";
+                                    $panggil = mysql_query($query);
+                                }
+                                else {
+                                    $query = "SELECT*FROM pendaftaran, jurusan WHERE jurusan.id_jurusan=pendaftaran.id_jurusan AND 	DATE(tgl_pendaftaran)='$ts' AND bukti_pem='$pem' AND verifikasi='$ver'";
+                                    $panggil = mysql_query($query);
+                                }
+                                
+                                if($panggil === FALSE) { 
+                                    die(mysql_error()); // TODO: better error handling
+                                }
+                                while($tampil = mysql_fetch_array($panggil)){
+                            ?>
+                            <tr style="font-size: 16px">
+                                <th scope="row"><?php echo $tampil['id_jurusan'].'.2020.0000'.$tampil['npm'];?></th>
+                                <td><?php echo $tampil['nama_mhs'];?></td>
+                                <td><?php echo $tampil['gender_mhs'];?></td>
+                                <td><?php echo $tampil['nama_jurusan'];?></td>
+                                <td><?php echo $tampil['email'];?></td>
+                                <td><?php echo $tampil['tgl_pendaftaran'];?></td>
+                                <td><?php  $bayar=$tampil['bukti_pem'];
+                                    if($bayar=="NULL"){
+                                        echo "Belum Bayar";
+                                    } else{ echo "Sudah Bayar";}?></td>
+                                <td><?php $bayar=$tampil['verifikasi'];
+                                    if($bayar=="NULL"){
+                                        echo "Belum Terverifikasi";
+                                    } else{ echo "Sudah Terverifikasi";}?></td>                                    
+                            </tr>
+                            <?php }?>
+                        </tbody>
+                    </table>
+                    <!-- /TABEL -->
+                </div>
+                <div class="row justify-content-center" style="margin-left: -10%">
+                    <div class="col-2">
+                        <h5 class="text-right">Filter :</h5>
+                    </div>
+                    <div class="col">
+                        <form method="GET">
+                            <input class="form-control mb-1" type="date" name="tgl" id="tgl"  style="width: 20%">
+                            <select class="form-control mb-1" name="pem" id="pem" style="width: 20%">
+                                <option value="">- Pembayaran -</option>
+                                <option value="NULL">Belum Bayar</option>
+                                <option value="DONE">Sudah Bayar</option>
+                            </select>
+                            <select class="form-control mb-1" name="ver" id="ver" style="width: 20%">
+                                <option value="">- Verifikasi -</option>
+                                <option value="NULL">Belum Terverifikasi</option>
+                                <option value="DONE">Sudah Terverifikasi</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary" >Hasil</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-5 mt-3" style="margin-left: -55%">
+                    <p class="font-italic">*Untuk penggunaan filter, semua form filter wajib terisi</p>
                     </div>
                 </div>
                 <br>
             </div>
         <!-- /Konten -->
-
-        <br>
         <br>
         <br>
             <!-- Optional JavaScript -->
