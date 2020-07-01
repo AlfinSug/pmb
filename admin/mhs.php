@@ -141,9 +141,17 @@
                                                             </div>
                                                             <div class="col-sm-8 ml-1">
                                                             <select class="form-control" id="jrsn" name="jrsn">
-                                                                <option value="<?php echo $see['id_jurusan'];?>"><?php echo $see['nama_jurusan']." ".$see['kelas'];?></option>
-                                                                <option value="1">Teknik Mesin Pagi</option>
-                                                                <option value="2">Teknik Mesin Malam</option>
+                                                                <option><?php echo $see['nama_jurusan']." ".$see['kelas'];?></option>
+                                                                <?php
+                                                                    $sambunganDB = mysql_connect("localhost","root","");
+                                                                    $koneksi=mysql_select_db("pmb");
+                                                                    $query = "SELECT*FROM jurusan";
+                                                                    $panggil = mysql_query($query);
+
+                                                                    while($tampil = mysql_fetch_array($panggil)):;?>
+                                                                        <option value="<?php echo $tampil['id_jurusan'];?>"><?php echo $tampil['nama_jurusan']." ".$tampil['kelas'];?></option>
+                                                                    <?php endwhile;
+                                                                ?>
                                                             </select>
                                                             </div>
                                                         </div>
