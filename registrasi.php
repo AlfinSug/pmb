@@ -1,3 +1,7 @@
+<?php
+  include('koneksi-regis.php'); 
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -34,37 +38,38 @@
   <div class="card" style="margin: 5% 30%;">
   <img src="assets/pmb.png" style="text-align: center; margin: 5% 40%; width: 20%;">
   <div class="card-body" style="padding: 5% 18%;">
-  <form>
+  <form action="proses-regis.php" method="post" enctype="multipart/form-data">
   <div class="form-group">
     <label for="inputAddress">Nama Lengkap</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="Contoh: Jhon Doe">
+    <input type="text" class="form-control" id="inputAddress" name="nama_mhs" placeholder="Contoh: Jhon Doe">
   </div>
   <div class="form-group">
     <label for="inputAddress2">Email</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Contoh : jhondoe@gmail.com">
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="Contoh : jhondoe@gmail.com">
   </div>
   
   <label for="inputAddress2">Jenis Kelamin</label>
   <div class="form-group">
   <div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+  <input class="form-check-input" type="radio" name="gender_mhs" id="inlineRadio1" value="Laki - Laki">
   <label class="form-check-label" for="inlineRadio1">Laki - Laki</label>
   </div>
   <div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+  <input class="form-check-input" type="radio" name="gender_mhs" id="inlineRadio2" value="Perempuan">
   <label class="form-check-label" for="inlineRadio2">Perempuan</label>
 </div>
 
   </div>
   <div class="form-group">
     <label for="inputAddress">No Telpon</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="Contoh : 08974879215">
+    <input type="text" class="form-control" id="inputAddress" name="telp_mhs" placeholder="Contoh : 08974879215">
   </div>
   <div class="form-group">
     <label for="inputAddress">Tanggal Lahir</label>
     <div class="input-group">
-            <input type="date" class="form-control" placeholder="01-01-2020" id="datepicker">
+            <input type="date" class="form-control" name="ttl_mhs" placeholder="01-01-2020" id="datepicker">
   </div>
+<!--
   <div style="margin-top: 5%;" class="form-group ">
       <label for="inputState">Program Studi</label>
       <select id="inputState" class="form-control">
@@ -81,14 +86,15 @@
         <option>Malam</option>
       </select>
     </div>
+    -->
     <div class="form-group">
     <label for="exampleFormControlTextarea1">Alamat</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Ketik Alamat anda.."></textarea>
+    <textarea class="form-control" id="exampleFormControlTextarea1" name="alamat_mhs" rows="3" placeholder="Ketik Alamat anda.."></textarea>
   </div>
   <div class="dropdown-divider"></div>
   <label for="exampleFormControlTextarea1">Bukti Pembayaran Pendaftaran (.png/.jpg)</label>
   <div class="custom-file">
-  <input type="file" class="custom-file-input" id="customFile">
+  <input type="file" class="custom-file-input" id="customFile" name="bukti_pem">
   <label class="custom-file-label" for="customFile">Pilih file</label>
   </div>
   <button style="margin-top: 10%;" type="submit" class="btn btn-primary col-md-12">Daftar</button>

@@ -8,8 +8,9 @@ $bukti ="";
 
 $action = $_GET['aksi'];
 if($action == "save") {
-    $connect->insert_data($_POST['nama_pegawai'], $_POST['alamat_pegawai'], $_POST['ttl_pegawai'], $_POST['no_telp_pegawai']);
-    header('location: viewDataPegawai.php');
+    $connect->insert_data($_POST['nama_mhs'], $_POST['email'], $_POST['gender_nmhs'], 
+    $_POST['telp_mhs'], $_POST['ttl_mhs'], $_POST['nama_jurusan'], $_POST['kelas']);
+    header('location: registrasi.php');
 }
 elseif($action == "edit") {
     $doc= $_POST['dokumen'];
