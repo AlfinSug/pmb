@@ -1,9 +1,17 @@
 <?php
-include_once 'config.php';
-class database extends config
+class database
 {
-
 	var $koneksi = "";
+	function __construct()
+	{
+		$this->koneksi = mysqli_connect("127.0.0.1:3307", "root", "alfin3307", "pmb_itats");
+
+		if (mysqli_connect_errno()) {
+			echo 'Koneksi database gagal!' . mysqli_connect_error();
+		} else {
+			$this->koneksi;
+		}
+	}
 
 	function tampil_data()
 	{

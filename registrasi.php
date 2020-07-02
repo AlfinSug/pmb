@@ -1,5 +1,5 @@
 <?php
-include('koneksi-regis.php');
+include('database.php');
 ?>
 
 <!doctype html>

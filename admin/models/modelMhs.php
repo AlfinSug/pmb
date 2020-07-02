@@ -43,3 +43,5 @@ class modelMhs  extends config
         $panggil = mysqli_query($this->penghubung, $query);
     }
 }
+// $object = new modelMhs();
+// $object->uptMhs('2', 'ragil', '13', 'surabaya', '2020-07-01', '09876', 'L', 'ragil@gmail.com');

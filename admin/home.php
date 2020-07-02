@@ -1,6 +1,4 @@
-<?php include_once('models/config.php');
-$connect = new config();
-$set_connect = $connect->__construct();
+<?php
 session_start();
 if (isset($_SESSION['unameadm'])) { } else {
     echo header("location:../index.php");
@@ -31,37 +29,7 @@ if (isset($_SESSION['unameadm'])) { } else {
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.16);">
-        <a class="navbar-brand" href="home.php"><img src="../assets/pmb.png" style="width: 45px; height: 45px"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <a href=""></a>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto" style="font-family: 'Roboto', sans-serif; font-size: 21px;">
-                <li class="nav-item active">
-                    <a class="nav-link font-weight-bolder" style="color: #1f447a" href="home.php">Home</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Data
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item text-primary" href="mhs.php">Mahasiswa</a>
-                        <a class="dropdown-item text-primary" href="jurusan.php">Jurusan</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                </li>
-            </ul>
-            <div class="my-2 my-lg-0">
-                <a class="nav-link" href="logout.php">
-                    <button class="btn btn-outline-success my-2 my-sm-0 tombol" type="button" style="font-family: 'Roboto', sans-serif;">Logout</button></a>
-            </div>
-        </div>
-    </nav>
-    <!-- /Navbar -->
+    <?php include('header-admin.php'); ?>
 
     <!-- Konten -->
     <div class="jumbotron jumbotron-fluid">
@@ -93,16 +61,19 @@ if (isset($_SESSION['unameadm'])) { } else {
                 </thead>
                 <tbody>
                     <?php
-                    $tgl = $_GET['tgl'];
-                    $ts = date('Y/m/d', strtotime($tgl));
-                    $pem = $_GET['pem'];
-                    $ver = $_GET['ver'];
-                    if ($tgl == "" && $pem == "" && $ver == "") {
-                        $query = "SELECT*FROM pendaftaran, jurusan WHERE jurusan.id_jurusan=pendaftaran.id_jurusan";
-                        $panggil = mysqli_query($set_connect->penghubung, $query);
-                    } else {
+                    $sambunganDB = mysqli_connect("127.0.0.1:3307", "root", "alfin3307", "pmb_itats");
+
+
+                    if (isset($_GET['tgl'])) {
+                        $tgl = $_GET['tgl'];
+                        $ts = date('Y/m/d', strtotime($tgl));
+                        $pem = $_GET['pem'];
+                        $ver = $_GET['ver'];
                         $query = "SELECT*FROM pendaftaran, jurusan WHERE jurusan.id_jurusan=pendaftaran.id_jurusan AND 	DATE(tgl_pendaftaran)='$ts' AND bukti_pem='$pem' AND verifikasi='$ver'";
-                        $panggil = mysqli_query($set_connect->penghubung, $query);
+                        $panggil = mysqli_query($sambunganDB, $query);
+                    } else {
+                        $query = "SELECT*FROM pendaftaran, jurusan WHERE jurusan.id_jurusan=pendaftaran.id_jurusan";
+                        $panggil = mysqli_query($sambunganDB, $query);
                     }
 
                     if ($panggil === FALSE) {
@@ -152,7 +123,7 @@ if (isset($_SESSION['unameadm'])) { } else {
                         <option value="NULL">Belum Terverifikasi</option>
                         <option value="DONE">Sudah Terverifikasi</option>
                     </select>
-                    <button type="submit" class="btn btn-primary">Hasil</button>
+                    <button type="submit" name="filter" id="filter" class="btn btn-primary">Hasil</button>
                 </form>
             </div>
         </div>
