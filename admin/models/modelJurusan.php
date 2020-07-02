@@ -1,11 +1,7 @@
 <?php
-class modelJurusan{
-    protected $koneksi;
+include_once '../config.php';
+class modelJurusan  extends config{
     private $dataku;
-    function __construct(){
-        $sambunganDB = mysql_connect("localhost","root","");
-        $koneksi=mysql_select_db("pmb");
-    }
 
     function vijur(){
         $query = "SELECT*FROM jurusan";
