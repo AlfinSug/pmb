@@ -1,40 +1,45 @@
 <?php
-include_once '../config.php';
-class modelJurusan  extends config{
+include_once 'config.php';
+class modelJurusan extends config
+{
     private $dataku;
 
-    function vijur(){
+    function vijur()
+    {
         $query = "SELECT*FROM jurusan";
-        $panggil = mysql_query($query);
-        if($panggil === FALSE) { 
+        $panggil = mysqli_query($this->penghubung, $query);
+        if ($panggil === FALSE) {
             die(mysql_error()); // TODO: better error handling
         }
 
-        while($tampil = mysql_fetch_array($panggil)){
-            $sementara[]=$tampil;
+        while ($tampil = mysqli_fetch_array($panggil)) {
+            $sementara[] = $tampil;
         }
-        $this->dataku=$sementara;
+        $this->dataku = $sementara;
         return $this->dataku;
     }
 
-    function injur($nj,$kls,$spp){
+    function injur($nj, $kls, $spp)
+    {
         $query = "INSERT INTO jurusan VALUES ('','$nj','$kls','$spp')";
-        $panggil = mysql_query($query);
+        $panggil = mysqli_query($this->penghubung, $query);
     }
 
-    function upjur($nj,$spp,$id){
+    function upjur($nj, $spp, $id)
+    {
         $query = "UPDATE jurusan SET nama_jurusan='$nj', biaya_spp='$spp' WHERE id_jurusan='$id'";
-        $panggil = mysql_query($query);
+        $panggil = mysqli_query($this->penghubung, $query);
     }
-    
-    function deljur($id){
+
+    function deljur($id)
+    {
         $query = "DELETE FROM jurusan WHERE id_jurusan='$id'";
-        $panggil = mysql_query($query);
+        $panggil = mysqli_query($this->penghubung, $query);
     }
-    function setjur(){
+    function setjur()
+    {
         $query = "ALTER TABLE `jurusan` MODIFY `id_jurusan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0";
-        $panggil2 = mysql_query($query);
+        $panggil2 = mysqli_query($this->penghubung, $query);
     }
 }
-$object=new modelJurusan();
-?>
+$object = new modelJurusan();
