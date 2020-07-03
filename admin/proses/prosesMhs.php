@@ -23,7 +23,7 @@ class prosesMhs
             $email = $_POST['email'];
 
             $yuk->upMhs($npm, $nm, $jrsn, $almt, $ttl, $tlp, $jk, $email);
-            header("Location:../mhs.php");
+            header('Location:../mhs.php?msg=success_update');
         } else if ($this->aksi == "delete") {
             $id = $_GET['npm'];
             $yuk->delMhs($id);

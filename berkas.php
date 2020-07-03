@@ -32,26 +32,9 @@ $biodata = $db->tampil_data();
   <title>Home Page</title>
 </head>
 
-<body style="background: #45aaf2;">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <img src="assets/pmb.png" alt="" width="30px" height="30px" style="margin-left: 9%;">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse ml-2" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="biodata.php">Biodata</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="berkas.php">Berkas</a>
-        </li>
-        <li class="nav-item" style="margin-left: 430%;">
-          <a class="nav-link" href="#">Logout</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+<body>
+  <img src="assets/kiri3.png" alt="" style="position: fixed;bottom: 0;	left: 0;	height: 100%;	z-index: -1;">
+  <?php include('header-mhs.php'); ?>
 
   <div class="container" style="display: flex;">
 
@@ -65,19 +48,22 @@ $biodata = $db->tampil_data();
           <label for="exampleFormControlTextarea1">Ijazah/SKL (.pdf)</label>
           <div class="custom-file">
             <input type="file" class="custom-file-input" id="customFile">
-            <label class="custom-file-label" for="customFile">Pilih file</label>
+            <label class="custom-file-label" for="customFile"></label>
           </div>
           <label for="exampleFormControlTextarea1" class="mt-4">Kartu Keluarga (.pdf)</label>
           <div class="custom-file">
             <input type="file" class="custom-file-input" id="customFile">
-            <label class="custom-file-label" for="customFile">Pilih file</label>
+            <label class="custom-file-label" for="customFile"></label>
           </div>
           <label for="exampleFormControlTextarea1" class="mt-4">Bukti Pembayaran (.pdf/.png)</label>
           <div class="custom-file">
-            <input type="file" class="custom-file-input " id="customFile">
-            <label class="custom-file-label" for="customFile">Pilih file</label>
+            <input type="file" class="custom-file-input " id="customFile" onchange="pickImage();">
+            <label class="custom-file-label" for="customFile"></label>
           </div>
-          <button name="edit" class="btn btn-info mt-3">Unggah</button>
+          <div class="form-group mt-4 ml-4" align="left">
+            <img src="assets/photo.png" id="image-preview" width="150" height="150" alt="image preview">
+          </div>
+          <button name="edit" class="btn btn-primary col-md-12 mt-4" align="center">Unggah</button>
         </form>
       </div>
 
@@ -112,6 +98,18 @@ $biodata = $db->tampil_data();
     </div>
   </div>
 
+
+  <script>
+    function pickImage() {
+      document.getElementById("image-preview").style.display = "block";
+      var oFReader = new FileReader();
+      oFReader.readAsDataURL(document.getElementById("customFile").files[0]);
+
+      oFReader.onload = function(oFREvent) {
+        document.getElementById("image-preview").src = oFREvent.target.result;
+      };
+    };
+  </script>
 
 
 

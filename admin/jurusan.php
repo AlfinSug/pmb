@@ -11,11 +11,23 @@
 
     <!-- FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="assets/sweetalert/sweetalert.min.js"></script>
     <title>Tabel Jurusan</title>
 </head>
 
 <body>
     <?php include('header-admin.php'); ?>
+
+    <?php
+
+    if (isset($_GET['msg'])) {
+        if ($_GET['msg'] == "success_update_jrsn") {
+            echo '<script>swal("Congratulation", "Update Data Jurusan Berhasil", "success");</script>';
+        }
+    } elseif ($_GET['msg'] == "success_insert") {
+        echo '<script>swal("Congratulation", "Data Sukses Ditambahkan", "success");</script>';
+    }
+    ?>
 
     <!-- Konten -->
     <div class="container bg-light rounded-lg warna" style="margin-top: 100px">
