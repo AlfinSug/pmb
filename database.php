@@ -12,6 +12,10 @@ class database
 			$this->koneksi;
 		}
 	}
+	function insert_data($jurusan, $email, $nama, $alamat, $ttl, $notelp, $gender, $bukti)
+	{
+		mysqli_query($this->koneksi, "insert into pendaftaran values('','$jurusan','$email', '$nama', '$alamat', '$ttl', '$notelp', '$gender', '$bukti')");
+	}
 
 	function tampil_data()
 	{

@@ -116,7 +116,7 @@
                                                         </div>
                                                         <div class="col-sm-8 ml-1">
                                                             <select class="form-control" id="jrsn" name="jrsn">
-                                                                <option value="<?php echo $see['id_jurusan']; ?>"><?php echo $see['nama_jurusan'] . " " . $see['kelas']; ?></option>
+                                                                <option value="<?php echo $see['id_jurusan']; ?>"><?php echo $see['nama_jurusan'] . "-" . $see['kelas']; ?></option>
                                                                 <?php
                                                                     $sambunganDB = mysqli_connect("127.0.0.1:3307", "root", "alfin3307", "pmb_itats");
 
@@ -124,7 +124,7 @@
                                                                     $panggil = mysqli_query($sambunganDB, $query);
 
                                                                     while ($tampil = mysqli_fetch_array($panggil)) :; ?>
-                                                                    <option value="<?php echo $tampil['id_jurusan']; ?>"><?php echo $tampil['nama_jurusan'] . " " . $tampil['kelas']; ?></option>
+                                                                    <option value="<?php echo $tampil['id_jurusan']; ?>"><?php echo $tampil['nama_jurusan'] . "-" . $tampil['kelas']; ?></option>
                                                                 <?php endwhile;
                                                                     ?>
                                                             </select>

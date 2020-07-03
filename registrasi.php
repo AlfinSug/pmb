@@ -1,5 +1,5 @@
 <?php
-include('database.php');
+include('config_mhs.php');
 ?>
 
 <!doctype html>
@@ -20,6 +20,7 @@ include('database.php');
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- CSS -->
   <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="assets/sweetalert/sweetalert.min.js"></script>
   <style>
     .input-group-append {
       cursor: pointer;
@@ -30,6 +31,14 @@ include('database.php');
 
 <body>
 
+  <?php
+
+  if (isset($_GET['msg'])) {
+    if ($_GET['msg'] == "file_failed") {
+      echo '<script>swal("Failed", "Gambar tidak valid", "error");</script>';
+    }
+  }
+  ?>
   <!-- Image and text -->
   <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="index.php">
@@ -37,12 +46,16 @@ include('database.php');
     </a>
   </nav>
 
+
   <img src="assets/kiri3.png" alt="" style="position: fixed;bottom: 0;	left: 0;	height: 100%;	z-index: -1;">
+
+
 
   <div class="card" style="margin: 5% 30%;">
     <img src="assets/pmb.png" style="text-align: center; margin: 5% 40%; width: 20%;">
     <div class="card-body" style="padding: 5% 18%;">
       <form action="proses-regis.php" method="post" enctype="multipart/form-data">
+        <input type="hidden" class="form-control" id="inputAddress" name="npm" placeholder="Contoh: Jhon Doe">
         <div class="form-group">
           <label for="inputAddress">Nama Lengkap</label>
           <input type="text" class="form-control" id="inputAddress" name="nama_mhs" placeholder="Contoh: Jhon Doe">
@@ -73,24 +86,24 @@ include('database.php');
           <div class="input-group">
             <input type="date" class="form-control" name="ttl_mhs" placeholder="01-01-2020" id="datepicker">
           </div>
-          <!--
-  <div style="margin-top: 5%;" class="form-group ">
-      <label for="inputState">Program Studi</label>
-      <select id="inputState" class="form-control">
-        <option selected>- Pilih Program Studi -</option>
-        <option>Sistem Informasi</option>
-        <option>Teknik Informatika</option>
-      </select>
-    </div>
-    <div class="form-group ">
-      <label for="inputState">Kelas</label>
-      <select id="inputState" class="form-control">
-        <option selected>- Pilih Kelas -</option>
-        <option>Pagi</option>
-        <option>Malam</option>
-      </select>
-    </div>
-    -->
+
+          <div class="form-group">
+
+            <label for="inputState">Jurusan</label>
+            <select class="form-control" id="jurusan" name="jurusan">
+              <option value="0">- Pilih Jurusan -</option>
+              <?php
+              include('config_mhs.php');
+              $query = "SELECT*FROM jurusan";
+              $panggil = mysqli_query($sambunganDB, $query);
+
+              while ($tampil = mysqli_fetch_array($panggil)) :; ?>
+                <option value="<?php echo $tampil['id_jurusan']; ?>"><?php echo $tampil['nama_jurusan'] . " - " . $tampil['kelas']; ?></option>
+              <?php endwhile;
+              ?>
+            </select>
+          </div>
+
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Alamat</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" name="alamat_mhs" rows="3" placeholder="Ketik Alamat anda.."></textarea>
@@ -98,14 +111,29 @@ include('database.php');
           <div class="dropdown-divider"></div>
           <label for="exampleFormControlTextarea1">Bukti Pembayaran Pendaftaran (.png/.jpg)</label>
           <div class="custom-file">
-            <input type="file" class="custom-file-input" id="customFile" name="bukti_pem">
-            <label class="custom-file-label" for="customFile">Pilih file</label>
+            <input type="file" class="custom-file-input" id="chooseFile" name="bukti_pem" onchange="pickImage();">
+            <label class="custom-file-label" id="custom-text" for="real-file"></label>
           </div>
-          <button style="margin-top: 10%;" type="submit" class="btn btn-primary col-md-12">Daftar</button>
+          <div class="form-group mt-4" align="center">
+            <img src="assets/photo.png" id="image-preview" width="300" height="300" alt="image preview">
+          </div>
+          <button style="margin-top: 10%;" type="submit" name="added" class=" btn btn-primary col-md-12">Daftar</button>
       </form>
 
     </div>
   </div>
+
+  <script>
+    function pickImage() {
+      document.getElementById("image-preview").style.display = "block";
+      var oFReader = new FileReader();
+      oFReader.readAsDataURL(document.getElementById("chooseFile").files[0]);
+
+      oFReader.onload = function(oFREvent) {
+        document.getElementById("image-preview").src = oFREvent.target.result;
+      };
+    };
+  </script>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

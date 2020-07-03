@@ -32,10 +32,24 @@ if (isset($_GET['aksi'])) {
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
   <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="assets/sweetalert/sweetalert.min.js"></script>
 
 </head>
 
 <body>
+
+  <?php
+
+  if (isset($_GET['msg'])) {
+    if ($_GET['msg'] == "success") {
+      echo '<script>swal("Selamat", "Registrasi sebagai mahasiswa berhasil", "success");</script>';
+    } elseif ($_GET['msg'] == "failed") {
+      echo '<script>swal("Opps", "Email atau password anda salah!", "error");</script>';
+    } elseif ($_GET['msg'] == "not_login") {
+      echo '<script>swal("Opps", "Anda harus login terlebih dahulu", "error");</script>';
+    }
+  }
+  ?>
   <img src="assets/kiri3.png" alt="" style="position: fixed;bottom: 0;	left: 0;	height: 100%;	z-index: -1;">
   <div class="container">
     <!-- ROW LOGIN -->
@@ -65,7 +79,7 @@ if (isset($_GET['aksi'])) {
           <div class="tab-pane fade show active" id="step-1" area-labelledby="step1-tab" role="tab-panel">
             <div class="innerContent">
               <div class="login-content justify-content-center">
-                <form action="#">
+                <form action="login-mhs.php" method="POST">
                   <img src="assets/mhs.svg">
                   <h4 style="margin-top: 12%;"></h4>
                   <div class="input-div one">
@@ -73,8 +87,8 @@ if (isset($_GET['aksi'])) {
                       <i class="fas fa-user"></i>
                     </div>
                     <div class="div">
-                      <h5>NPM</h5>
-                      <input type="text" class="input">
+                      <h5>Email</h5>
+                      <input type="text" name="email" class="input">
                     </div>
                   </div>
                   <div class="input-div pass">
@@ -82,8 +96,8 @@ if (isset($_GET['aksi'])) {
                       <i class="fas fa-lock"></i>
                     </div>
                     <div class="div">
-                      <h5>Password</h5>
-                      <input type="password" class="input">
+                      <h5>Password (Tanggal Lahir)</h5>
+                      <input type="password" name="telp_mhs" class="input">
                     </div>
                   </div>
                   <input type="submit" class="btn2" value="Login">
