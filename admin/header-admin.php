@@ -11,7 +11,12 @@
                  <a class="nav-link text-primary" href="home.php">Home</a>
              </li>
              <li class="nav-item">
-                 <a class="nav-link text-primary" href="mhs.php">Mahasiswa</a>
+
+             <!--IKI DIUBAH DULU HREF E KAK mhs.php  -->
+                 <a class="nav-link text-primary" href="mhsu.php">Mahasiswa</a>
+                <!-- /PENUTUP KOMEN -->
+
+
              </li>
              <li class="nav-item">
                  <a class="nav-link text-primary" href="jurusan.php">Jurusan</a>
