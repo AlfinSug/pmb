@@ -11,11 +11,22 @@
 
     <!-- FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="assets/sweetalert/sweetalert.min.js"></script>
     <title>Tabel Mahasiswa</title>
 </head>
 
 <body>
     <?php include('header-admin.php'); ?>
+
+    <?php
+
+    if (isset($_GET['msg'])) {
+        if ($_GET['msg'] == "success_update") {
+            echo '<script>swal("Congratulation", "Update Data berhasil", "success");</script>';
+        }
+    }
+    ?>
+
 
     <!-- Konten -->
     <div align="center">
@@ -74,7 +85,7 @@
                                             <a href="proses/prosesMhs.php?aksi=delete&npm=<?php echo $see['npm']; ?>"><button type="button" class="text-light btn btn-danger btn-sm font-weight-bolder" style="margin-top: 5px">Delete</button></a><br>
                                             <?php
                                                 $verif = $see['verifikasi'];
-                                                if ($verif == "NULL") { ?>
+                                                if ($verif == "") { ?>
                                                 <a href="proses/prosesMhs.php?aksi=tombol&npm=<?php echo $see['npm']; ?>"><button type="button" class="btn btn-info btn-sm font-weight-bolder" style="margin-top: 5px">Verify</button></a>
                                             <?php } else if ($verif == "DONE") { ?>
                                                 <button type="button" class="btn btn-success btn-sm font-weight-bolder" style="margin-top: 5px">Verified</button>
@@ -190,6 +201,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
+
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                         <button type="submit" class="btn btn-primary">Send message</button>
                                                     </div>

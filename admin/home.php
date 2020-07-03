@@ -25,11 +25,20 @@ if (isset($_SESSION['unameadm'])) { } else {
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
+    <script type="text/javascript" src="assets/sweetalert/sweetalert.min.js"></script>
     <title>Home Admin</title>
 </head>
 
 <body>
     <?php include('header-admin.php'); ?>
+    <?php
+
+    if (isset($_GET['msg'])) {
+        if ($_GET['msg'] == "success_adm") {
+            echo '<script>swal("Congratulation", "Anda Berhasil Login Sebagai Admin", "success");</script>';
+        }
+    }
+    ?>
 
     <!-- Konten -->
     <div class="jumbotron jumbotron-fluid">

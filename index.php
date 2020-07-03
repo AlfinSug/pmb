@@ -8,10 +8,9 @@ if (isset($_GET['aksi'])) {
     // validasi login
     if ($username == 'admin' and $password == 'admin') {
       $_SESSION['unameadm'] = $username;
-      header('Location: admin/home.php');
+      header('Location: admin/home.php?msg=success_adm');
     } else {
-      $pesan = "Username atau Password yang anda masukkan salah";
-      echo "<script type='text/javascript'>alert('$pesan');</script>";
+      header('Location: index.php?msg=failed_adm');
     }
   }
 }
@@ -47,6 +46,8 @@ if (isset($_GET['aksi'])) {
       echo '<script>swal("Opps", "Email atau password anda salah!", "error");</script>';
     } elseif ($_GET['msg'] == "not_login") {
       echo '<script>swal("Opps", "Anda harus login terlebih dahulu", "error");</script>';
+    } elseif ($_GET['msg'] == "failed_adm") {
+      echo '<script>swal("Opps", "Email atau password anda salah!", "error");</script>';
     }
   }
   ?>
@@ -96,7 +97,7 @@ if (isset($_GET['aksi'])) {
                       <i class="fas fa-lock"></i>
                     </div>
                     <div class="div">
-                      <h5>Password (Tanggal Lahir)</h5>
+                      <h5>Password (No. Telp)</h5>
                       <input type="password" name="telp_mhs" class="input">
                     </div>
                   </div>
