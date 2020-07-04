@@ -33,7 +33,7 @@ class prosesMhs
             $id = $_GET['npm'];
             $ver = "DONE";
             $yuk->tomMhs($id, $ver);
-            header("Location:../mhs.php");
+            header("Location:../mhs.php?mhs=verif");
         }
     }
 }

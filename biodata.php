@@ -2,11 +2,8 @@
 include('config_mhs.php');
 session_start();
 if (isset($_SESSION['login_mhs'])) {
-  $sql_data = "select nama_mhs, alamat_mhs, ttl_mhs, telp_mhs, email, nama_jurusan, kelas 
-  from pendaftaran inner join jurusan on pendaftaran.id_jurusan = jurusan.id_jurusan;";
-  $biodata = mysqli_query($sambunganDB, $sql_data);
+  $email = $_SESSION['email'];
 } else {
-
   header('location: index.php?msg=not_login');
 }
 ?>
@@ -66,6 +63,9 @@ if (isset($_SESSION['login_mhs'])) {
       <div class="col-md-8">
         <div class="card-body">
           <?php
+          $sql_data = "select nama_mhs, alamat_mhs, ttl_mhs, telp_mhs, email, nama_jurusan, kelas 
+           from pendaftaran inner join jurusan on pendaftaran.id_jurusan = jurusan.id_jurusan where email='$email';";
+          $biodata = mysqli_query($sambunganDB, $sql_data);
           foreach ($biodata as $row) {
             ?>
             <h5 class="card-title">Biodata</h5>

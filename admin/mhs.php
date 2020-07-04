@@ -23,6 +23,8 @@
     if (isset($_GET['msg'])) {
         if ($_GET['msg'] == "success_update") {
             echo '<script>swal("Congratulation", "Update Data berhasil", "success");</script>';
+        } elseif ($_GET['msg'] == "verif") {
+            echo '<script>swal("Congratulation", "Data berhasil di verikasi", "success");</script>';
         }
     }
     ?>
