@@ -40,18 +40,19 @@
                     <table class="table table-hover table-striped" style="width: 106%; margin-left: -3%">
                         <thead class="bg-primary text-center text-light">
                             <tr>
-                                <th scope="col" style="width: 5%">NPM</th>
-                                <th scope="col" style="width: 10%">Nama Mahasiswa</th>
-                                <th scope="col" style="width: 10%">Jurusan</th>
-                                <th scope="col" style="width: 5%">Kelas</th>
-                                <th scope="col" style="width: 5%">Alamat</th>
-                                <th scope="col" style="width: 20%">TTL</th>
-                                <th scope="col" style="width: 10%">No. Telp</th>
-                                <th scope="col" style="width: 2%">Gender</th>
-                                <th scope="col" style="width: 15%">Email</th>
-                                <th scope="col" style="width: 5%">Tgl Pendaftaran</th>
-                                <th scope="col" style="width: 5%">Pembayaran</th>
-                                <th scope="col" style="width: 20%">Action</th>
+                                <th scope="col" class="max-width">NPM</th>
+                                <th scope="col" class="max-width">Foto Profil</th>
+                                <th scope="col" class="max-width">Nama Mahasiswa</th>
+                                <th scope="col" class="max-width">Jurusan</th>
+                                <th scope="col" class="max-width">Kelas</th>
+                                <th scope="col" class="max-width">Alamat</th>
+                                <th scope="col" class="max-width">TTL</th>
+                                <th scope="col" class="max-width">No. Telp</th>
+                                <th scope="col" class="max-width">Gender</th>
+                                <th scope="col" class="max-width">Email</th>
+                                <th scope="col" class="max-width">Tgl Pendaftaran</th>
+                                <th scope="col" class="max-width">Pembayaran</th>
+                                <th scope="col" class="max-width">Action</th>
                             </tr>
                         </thead>
                         <tbody style="font-size: 15px">
@@ -64,6 +65,15 @@
                                 ?>
                                 <tr>
                                     <th scope="row"><?php echo $see['id_jurusan'] . '.2020.0000' . $see['npm']; ?></th>
+                                    <td><?php
+                                            $foto = $see['images_profil'];
+                                            if ($foto == "NULL" || $foto == "") { ?>
+                                            <img src="../assets/person.svg" class="rounded-circle img-fluid" style="width: 120%">
+                                        <?php } else { ?>
+                                            <img src="../assets/fotomhs/<?php echo $foto; ?>" class="rounded-circle" style="width: 120%">
+                                        <?php }
+                                            ?>
+                                    </td>
                                     <td><?php echo $see['nama_mhs']; ?></td>
                                     <td><?php echo $see['nama_jurusan']; ?></td>
                                     <td><?php echo $see['kelas']; ?></td>
@@ -75,7 +85,7 @@
                                     <td><?php echo $see['tgl_pendaftaran']; ?></td>
                                     <td><?php
                                             $bayar = $see['bukti_pem'];
-                                            if ($bayar == "NULL") {
+                                            if ($bayar == "NULL" /*UPDATE */ || $bayar == "" /*UPDATE_TUTUP*/) {
                                                 echo "Belum Bayar";
                                             } else {
                                                 echo "Sudah Bayar";
@@ -87,7 +97,7 @@
                                             <a href="proses/prosesMhs.php?aksi=delete&npm=<?php echo $see['npm']; ?>"><button type="button" class="text-light btn btn-danger btn-sm font-weight-bolder" style="margin-top: 5px">Delete</button></a><br>
                                             <?php
                                                 $verif = $see['verifikasi'];
-                                                if ($verif == "") { ?>
+                                                if ($verif == "NULL" || $verif == "") { ?>
                                                 <a href="proses/prosesMhs.php?aksi=tombol&npm=<?php echo $see['npm']; ?>"><button type="button" class="btn btn-info btn-sm font-weight-bolder" style="margin-top: 5px">Verify</button></a>
                                             <?php } else if ($verif == "DONE") { ?>
                                                 <button type="button" class="btn btn-success btn-sm font-weight-bolder" style="margin-top: 5px">Verified</button>
@@ -106,7 +116,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="proses/prosesMhs.php?aksi=ubah&id=<?php echo $see['npm']; ?>" method="POST">
+                                                <form enctype="multipart/form-data" action="proses/prosesMhs.php?aksi=ubah&id=<?php echo $see['npm']; ?>" method="POST">
                                                     <div class="form-group row">
                                                         <div class="col-sm-3">
                                                             <label for="recipient-name" class="col-form-label ml-4">NPM</label>
@@ -202,6 +212,23 @@
                                                             <input type="text" class="form-control" placeholder="Tanggal Pendaftaran" value="<?php echo $see['tgl_pendaftaran']; ?>" disabled>
                                                         </div>
                                                     </div>
+                                                    <?php
+                                                        if ($see['images_profil'] == '' || $see['images_profil'] == 'NULL') { ?>
+                                                        <div class="form-group row">
+
+                                                            <div class="col-sm-3">
+                                                                <label for="recipient-name" class="col-form-label  ml-4">Foto Profil</label>
+                                                            </div>
+                                                            <div class="col-sm-4 ml-1">
+                                                                <input type="file" id="fotop" name="fotop">
+                                                            </div>
+                                                            <div class="col-sm-10 ml-1">
+                                                                <label for="recipient-name" class="col-form-label  ml-4">Foto berukuran 3*3 & Format PNG</label>
+                                                            </div>
+
+                                                        </div>
+                                                    <?php
+                                                        } ?>
                                                     <div class="modal-footer">
 
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

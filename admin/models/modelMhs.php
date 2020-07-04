@@ -42,6 +42,27 @@ class modelMhs  extends config
         $query = "UPDATE pendaftaran SET verifikasi='$verif' WHERE npm='$npm'";
         $panggil = mysqli_query($this->penghubung, $query);
     }
+
+    function upfoto($foto, $npm)
+    {
+        $query = "UPDATE pendaftaran SET images_profil='$foto' WHERE npm='$npm'";
+        $panggil = mysqli_query($this->penghubung, $query);
+    }
+
+    function viBer($email)
+    {
+        $query = "SELECT*FROM pendaftaran WHERE email='$email'";
+        $panggil = mysqli_query($this->penghubung, $query);
+        if ($panggil === FALSE) {
+            die(mysql_error()); // TODO: better error handling
+        }
+
+        while ($tampil = mysqli_fetch_array($panggil)) {
+            $sementara[] = $tampil;
+        }
+        $this->dataku = $sementara;
+        return $this->dataku;
+    }
 }
 // $object = new modelMhs();
 // $object->uptMhs('2', 'ragil', '13', 'surabaya', '2020-07-01', '09876', 'L', 'ragil@gmail.com');

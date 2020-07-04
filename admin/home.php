@@ -76,9 +76,8 @@ if (isset($_SESSION['unameadm'])) { } else {
                     if (isset($_GET['tgl'])) {
                         $tgl = $_GET['tgl'];
                         $ts = date('Y/m/d', strtotime($tgl));
-                        $pem = $_GET['pem'];
                         $ver = $_GET['ver'];
-                        $query = "SELECT*FROM pendaftaran, jurusan WHERE jurusan.id_jurusan=pendaftaran.id_jurusan AND 	DATE(tgl_pendaftaran)='$ts' AND bukti_pem='$pem' AND verifikasi='$ver'";
+                        $query = "SELECT*FROM pendaftaran, jurusan WHERE jurusan.id_jurusan=pendaftaran.id_jurusan AND 	DATE(tgl_pendaftaran)='$ts' AND verifikasi='$ver'";
                         $panggil = mysqli_query($sambunganDB, $query);
                     } else {
                         $query = "SELECT*FROM pendaftaran, jurusan WHERE jurusan.id_jurusan=pendaftaran.id_jurusan";
@@ -103,8 +102,8 @@ if (isset($_SESSION['unameadm'])) { } else {
                                     } else {
                                         echo "Sudah Bayar";
                                     } ?></td>
-                            <td><?php $bayar = $tampil['verifikasi'];
-                                    if ($bayar == "NULL") {
+                            <td><?php $verif = $tampil['verifikasi'];
+                                    if ($verif == "NULL" || $verif == "") {
                                         echo "Belum Terverifikasi";
                                     } else {
                                         echo "Sudah Terverifikasi";
@@ -122,13 +121,8 @@ if (isset($_SESSION['unameadm'])) { } else {
             <div class="col">
                 <form method="GET">
                     <input class="form-control mb-1" type="date" name="tgl" id="tgl" style="width: 20%">
-                    <select class="form-control mb-1" name="pem" id="pem" style="width: 20%">
-                        <option value="">- Pembayaran -</option>
-                        <option value="NULL">Belum Bayar</option>
-                        <option value="DONE">Sudah Bayar</option>
-                    </select>
                     <select class="form-control mb-1" name="ver" id="ver" style="width: 20%">
-                        <option value="">- Verifikasi -</option>
+                        <option value="TEST">- Verifikasi -</option>
                         <option value="NULL">Belum Terverifikasi</option>
                         <option value="DONE">Sudah Terverifikasi</option>
                     </select>

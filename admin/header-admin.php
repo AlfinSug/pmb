@@ -12,9 +12,9 @@
              </li>
              <li class="nav-item">
 
-             <!--IKI DIUBAH DULU HREF E KAK mhs.php  -->
-                 <a class="nav-link text-primary" href="mhsu.php">Mahasiswa</a>
-                <!-- /PENUTUP KOMEN -->
+                 <!--IKI DIUBAH DULU HREF E KAK mhs.php  -->
+                 <a class="nav-link text-primary" href="mhs.php">Mahasiswa</a>
+                 <!-- /PENUTUP KOMEN -->
 
 
              </li>

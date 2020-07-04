@@ -19,7 +19,7 @@ class database
 
 	function tampil_data()
 	{
-		$data = mysqli_query($this->koneksi, "select nama_mhs, alamat_mhs, ttl_mhs, telp_mhs, email, nama_jurusan, kelas 
+		$data = mysqli_query($this->koneksi, "select nama_mhs, alamat_mhs, ttl_mhs, telp_mhs, email, nama_jurusan, kelas, dokumen, images_profil, kartu_keluarga 
         from pendaftaran inner join jurusan on pendaftaran.id_jurusan = jurusan.id_jurusan;");
 		while ($row = mysqli_fetch_array($data)) {
 			$hasil[] = $row;

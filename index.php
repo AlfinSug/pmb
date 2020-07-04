@@ -44,10 +44,10 @@ if (isset($_GET['aksi'])) {
       echo '<script>swal("Selamat", "Registrasi sebagai mahasiswa berhasil", "success");</script>';
     } elseif ($_GET['msg'] == "failed") {
       echo '<script>swal("Opps", "Email atau password anda salah!", "error");</script>';
-    } elseif ($_GET['msg'] == "not_login") {
-      echo '<script>swal("Opps", "Anda harus login terlebih dahulu", "error");</script>';
     } elseif ($_GET['msg'] == "failed_adm") {
       echo '<script>swal("Opps", "Email atau password anda salah!", "error");</script>';
+    } elseif ($_GET['msg'] == "not_verif") {
+      echo '<script>swal("Opps", "Data belum terverifikasi!", "error");</script>';
     }
   }
   ?>

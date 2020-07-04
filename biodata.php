@@ -57,28 +57,32 @@ if (isset($_SESSION['login_mhs'])) {
   <div class="card mb-3" id="kartu" style="max-width: 80%; ">
     <div class="row no-gutters">
       <div class="col-md-4">
+        <?php
+        $sql_data = "select nama_mhs, alamat_mhs, ttl_mhs, telp_mhs, email, nama_jurusan, kelas , images_profil
+        from pendaftaran inner join jurusan on pendaftaran.id_jurusan = jurusan.id_jurusan where email='$email';";
+        $biodata = mysqli_query($sambunganDB, $sql_data);
 
-        <img src="assets/face.png" style="padding: 10%;" class="card-img" alt="">
+        foreach ($biodata as $row) {
+          if ($row['images_profil'] == "NULL" || $row['images_profil'] == "") { ?>
+            <img src="assets/face.png" style="padding: 10%;" class="card-img" alt="">
+          <?php } else { ?>
+            <img src="assets/fotomhs/<?= $row['images_profil']; ?>" style="padding: 10%;" class="card-img" alt="">
+          <?php } ?>
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <?php
-          $sql_data = "select nama_mhs, alamat_mhs, ttl_mhs, telp_mhs, email, nama_jurusan, kelas 
-           from pendaftaran inner join jurusan on pendaftaran.id_jurusan = jurusan.id_jurusan where email='$email';";
-          $biodata = mysqli_query($sambunganDB, $sql_data);
-          foreach ($biodata as $row) {
-            ?>
-            <h5 class="card-title">Biodata</h5>
-            <p class="card-text"><i class="fas fa-signature"></i> <?php echo $row['nama_mhs']; ?></p>
-            <p class="card-text"><i class="fas fa-map-pin"></i> <?php echo $row['alamat_mhs']; ?></p>
-            <p class="card-text"><i class="far fa-calendar-alt"></i> <?php echo $row['ttl_mhs']; ?></p>
-            <p class="card-text"><i class="fas fa-tty"></i> <?php echo $row['telp_mhs']; ?></p>
-            <p class="card-text"><i class="far fa-envelope"></i> <?php echo $row['email']; ?></p>
-            <p class="card-text"><i class="fas fa-university"></i> <?php echo $row['nama_jurusan']; ?></p>
-            <p class="card-text"><i class="far fa-clock"></i> <?php echo $row['kelas']; ?></p>
-          <?php
-          }
-          ?>
+
+          <h5 class="card-title">Biodata</h5>
+          <p class="card-text"><i class="fas fa-signature"></i> <?php echo $row['nama_mhs']; ?></p>
+          <p class="card-text"><i class="fas fa-map-pin"></i> <?php echo $row['alamat_mhs']; ?></p>
+          <p class="card-text"><i class="far fa-calendar-alt"></i> <?php echo $row['ttl_mhs']; ?></p>
+          <p class="card-text"><i class="fas fa-tty"></i> <?php echo $row['telp_mhs']; ?></p>
+          <p class="card-text"><i class="far fa-envelope"></i> <?php echo $row['email']; ?></p>
+          <p class="card-text"><i class="fas fa-university"></i> <?php echo $row['nama_jurusan']; ?></p>
+          <p class="card-text"><i class="far fa-clock"></i> <?php echo $row['kelas']; ?></p>
+        <?php
+        }
+        ?>
         </div>
       </div>
     </div>

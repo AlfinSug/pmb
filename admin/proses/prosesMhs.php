@@ -22,8 +22,27 @@ class prosesMhs
             $jk = $_POST['jk'];
             $email = $_POST['email'];
 
-            $yuk->upMhs($npm, $nm, $jrsn, $almt, $ttl, $tlp, $jk, $email);
-            header('Location:../mhs.php?msg=success_update');
+            $foto = $_FILES['fotop']['name'];
+            if ($foto == "") {
+                $yuk->upMhs($npm, $nm, $jrsn, $almt, $ttl, $tlp, $jk, $email);
+                $pesan = "Update Sukses";
+            } else {
+                $yuk->upMhs($npm, $nm, $jrsn, $almt, $ttl, $tlp, $jk, $email);
+                $format = array('png', 'jpg');
+                $x = explode('.', $foto);
+                $eksistensi = strtolower(end($x));
+                $lokasi = $_FILES['fotop']['tmp_name'];
+                if (in_array($eksistensi, $format) === true) {
+                    move_uploaded_file($lokasi, '../../assets/fotomhs/' . $foto);
+                    $yuk->upfoto($foto, $npm);
+                } else {
+                    $pesan = "FORMAT FOTO SALAH";
+                    echo "<script type='text/javascript'>alert('$pesan');</script>";
+                    echo "<script>window.location.href='../mhs.php';</script>";
+                    exit;
+                }
+            }
+            header("Location:../mhs.php");
         } else if ($this->aksi == "delete") {
             $id = $_GET['npm'];
             $yuk->delMhs($id);
