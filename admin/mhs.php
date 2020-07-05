@@ -15,7 +15,7 @@
     <title>Tabel Mahasiswa</title>
 </head>
 
-<body>
+<body style="padding: 3%; margin: 0">
     <?php include('header-admin.php'); ?>
 
     <?php
@@ -32,27 +32,27 @@
 
     <!-- Konten -->
     <div align="center">
-        <div class="bg-light warna" style="margin-top: 100px; border-radius: 10px; width: 97%">
+        <div class="bg-light warna" style="margin-top: 7%; border-radius: 10px; width: 100%">
             <div class="row justify-content-center">
                 <div class="col-11 mt-4">
-                    <h2 class="mb-4 text-left" style="margin-left: -3%; color: #2d98da">Tabel Mahasiswa</h2>
+                    <h2 class="mb-4 text-left" style="margin-left: -1%; color: #2d98da">Tabel Mahasiswa</h2>
                     <!-- TABEL -->
-                    <table class="table table-hover table-striped" style="width: 106%; margin-left: -3%">
+                    <table class="table table-hover table-striped" style="max-width: 100%; margin: 2% -5%">
                         <thead class="bg-primary text-center text-light">
                             <tr>
-                                <th scope="col" class="max-width">NPM</th>
-                                <th scope="col" class="max-width">Foto Profil</th>
-                                <th scope="col" class="max-width">Nama Mahasiswa</th>
-                                <th scope="col" class="max-width">Jurusan</th>
-                                <th scope="col" class="max-width">Kelas</th>
-                                <th scope="col" class="max-width">Alamat</th>
-                                <th scope="col" class="max-width">TTL</th>
-                                <th scope="col" class="max-width">No. Telp</th>
-                                <th scope="col" class="max-width">Gender</th>
-                                <th scope="col" class="max-width">Email</th>
-                                <th scope="col" class="max-width">Tgl Pendaftaran</th>
-                                <th scope="col" class="max-width">Pembayaran</th>
-                                <th scope="col" class="max-width">Action</th>
+                                <th scope="col">NPM</th>
+                                <th scope="col">Foto Profil</th>
+                                <th scope="col">Nama Mahasiswa</th>
+                                <th scope="col">Jurusan</th>
+                                <th scope="col">Kelas</th>
+                                <th scope="col">Alamat</th>
+                                <th scope="col">TTL</th>
+                                <th scope="col">No. Telp</th>
+                                <th scope="col">Gender</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Tgl Pendaftaran</th>
+                                <th scope="col">Pembayaran</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody style="font-size: 15px">
@@ -68,9 +68,9 @@
                                     <td><?php
                                             $foto = $see['images_profil'];
                                             if ($foto == "NULL" || $foto == "") { ?>
-                                            <img src="../assets/person.svg" class="rounded-circle img-fluid" style="width: 120%">
+                                            <img src="../assets/person.svg" class="rounded" style="width: 120%">
                                         <?php } else { ?>
-                                            <img src="../assets/fotomhs/<?php echo $foto; ?>" class="rounded-circle" style="width: 120%">
+                                            <img src="../assets/fotomhs/<?php echo $foto; ?>" class="rounded" style="width: 120%">
                                         <?php }
                                             ?>
                                     </td>
@@ -94,7 +94,7 @@
                                     <td>
                                         <div align="center">
                                             <a data-toggle="modal" href="#modalUpdate<?php echo $see['npm']; ?>"><button type="button" class="btn btn-warning btn-sm font-weight-bolder">Update</button></a><br>
-                                            <a href="proses/prosesMhs.php?aksi=delete&npm=<?php echo $see['npm']; ?>"><button type="button" class="text-light btn btn-danger btn-sm font-weight-bolder" style="margin-top: 5px">Delete</button></a><br>
+                                            <a href="proses/prosesMhs.php?aksi=delete&npm=<?php echo $see['npm']; ?>" onclick="deleted()"><button type="button" class="text-light btn btn-danger btn-sm font-weight-bolder" style="margin-top: 5px">Delete</button><br></a>
                                             <?php
                                                 $verif = $see['verifikasi'];
                                                 if ($verif == "NULL" || $verif == "") { ?>
@@ -253,6 +253,8 @@
     <!-- /Konten -->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>

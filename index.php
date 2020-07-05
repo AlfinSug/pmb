@@ -41,13 +41,13 @@ if (isset($_GET['aksi'])) {
 
   if (isset($_GET['msg'])) {
     if ($_GET['msg'] == "success") {
-      echo '<script>swal("Selamat", "Registrasi sebagai mahasiswa berhasil", "success");</script>';
+      echo '<script>swal("Registrasi Berhasil", "Registrasi sebagai mahasiswa berhasil, Mohon tunggu sampai data anda telah diverifikasi oleh admin", "success");</script>';
     } elseif ($_GET['msg'] == "failed") {
       echo '<script>swal("Opps", "Email atau password anda salah!", "error");</script>';
     } elseif ($_GET['msg'] == "failed_adm") {
       echo '<script>swal("Opps", "Email atau password anda salah!", "error");</script>';
     } elseif ($_GET['msg'] == "not_verif") {
-      echo '<script>swal("Opps", "Data belum terverifikasi!", "error");</script>';
+      echo '<script>swal("Verifikasi Data", "Data belum terverifikasi, Silahkan hubungi admin untuk memverifikasi data anda", "error");</script>';
     }
   }
   ?>

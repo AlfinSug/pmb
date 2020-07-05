@@ -140,6 +140,7 @@ if (isset($_SESSION['login_mhs'])) {
         <div class="card-body">
           <div class="card mb-3">
             <div class="card-body">
+              <h5 class="card-title">File Ijazah/SKL (.pdf)</h5>
               <?php
                 $dok = $see['dokumen'];
                 if ($dok == "" || $dok == "NULL") {
@@ -147,13 +148,14 @@ if (isset($_SESSION['login_mhs'])) {
                 } else {
                   ?>
                 <embed width="300" height="250" src="assets/<?php echo $see['dokumen']; ?>" type="application/pdf">
-                <h5 class="card-title"><?php echo $see['dokumen']; ?></h5>
+                <h6 class="card-title"><?php echo $see['dokumen']; ?></h6>
               <?php }
                 ?>
             </div>
           </div>
           <div class="card mb-3">
             <div class="card-body">
+              <h5 class="card-title">File Kartu Keluarga (.pdf)</h5>
               <?php
                 $kk = $see['kartu_keluarga'];
                 if ($kk == "" || $kk == "NULL") {
@@ -161,15 +163,16 @@ if (isset($_SESSION['login_mhs'])) {
                 } else {
                   ?>
                 <embed width="300" height="250" src="assets/<?php echo $kk; ?>" type="application/pdf">
-                <h5 class="card-title"><?php echo $see['kartu_keluarga']; ?></h5>
+                <h6 class="card-title"><?php echo $see['kartu_keluarga']; ?></h6>
               <?php }
                 ?>
             </div>
           </div>
           <div class="card mb-3">
             <div class="card-body">
+              <h5 class="card-title">File Bukti Pembayaran (.png/.jpg)</h5>
               <img width="300" height="200" src="assets/<?php echo $see['bukti_pem']; ?>">
-              <h5 class="card-title"><?php echo $see['bukti_pem']; ?></h5>
+              <h6 class="card-title"><?php echo $see['bukti_pem']; ?></h6>
             </div>
           </div>
         </div>

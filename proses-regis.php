@@ -30,8 +30,7 @@ if (isset($_POST['added'])) {
       $result = mysqli_query($sambunganDB, $query);
 
       if (!$result) {
-        die("Query gagal dijalankan: " . mysqli_errno($sambunganDB) .
-          " - " . mysqli_error($sambunganDB));
+        header('location: registrasi.php?msg=query_fk_failed');
       } else {
         header('Location: index.php?msg=success');
       }
