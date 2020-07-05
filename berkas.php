@@ -77,22 +77,19 @@ if (isset($_SESSION['login_mhs'])) {
             <label for="exampleFormControlTextarea1">Ijazah/SKL (.pdf)</label>
             <?php
               $dok = $see['dokumen'];
-              if ($dok == "" || $dok == "NULL") { ?>
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" name="ijazah" id="ijazah">
-                <label class="custom-file-label" for="customFile"></label>
-              </div>
-              <button name="unggah_ijazah" class="btn btn-primary col-md-12 mt-4" align="center">Unggah</button>
-            <?php } else { ?>
-              <div class="custom-file">
+              ?>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" name="ijazah" id="ijazah">
+              <label class="custom-file-label" for="customFile"></label>
+            </div>
+            <button name="unggah_ijazah" class="btn btn-primary col-md-12 mt-4" align="center">Unggah</button>
+          <?php } ?>
+          <!-- <div class="custom-file">
                 <input type="file" class="custom-file-input" name="ijazah" id="ijazah" disabled>
                 <label class="custom-file-label" for="customFile"></label>
               </div>
               <button name="unggah_ijazah" class="btn btn-primary col-md-12 mt-4" align="center" disabled>Unggah</button>
-            <?php }
-              ?>
-          <?php }
-          ?>
+             -->
         </form>
         <form action="upload-berkas.php" method="post" enctype="multipart/form-data">
           <?php
